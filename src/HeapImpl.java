@@ -15,6 +15,7 @@ class HeapImpl<T extends Comparable<? super T>> implements Heap<T> {
 	public void add (T data) {
 		_storage[_numElements] = data;
         _numElements += 1;
+		// System.out.println(_storage[0]);
 		heapifyDown();
     }
 
@@ -51,23 +52,33 @@ class HeapImpl<T extends Comparable<? super T>> implements Heap<T> {
 
 	public T removeFirst () {
 		T returnT = _storage[0];
-		heapifyUp();
+		// Event ee = (Event) returnT;
+		// System.out.println(ee._timeOfEvent);
+		bubbleUp();
         _numElements -= 1;
 		return returnT;
 	}
 
-	private void heapifyUp(){
+	private void bubbleUp(){
 		// start at the element at the end
-		int index = _numElements;
-        while(index > 0){
-			// 
-            if(_storage[(index-1)/2].compareTo(_storage[index]) > 1) {
+		int index = _numElements-1;
+		int parent = 0;
+		while(index > 1){
+			// if the node is a left node, the parent is -1 /2
+			if((index-1) % 2 == 0){
+				parent = (index-1)/2;
+				// System.out.println(parent);
+			}else{
+				// if its a right node, then the parent is -2 /2
+				parent = (index-2)/2;
+			}
+			if(_storage[parent].compareTo(_storage[index]) > 1) {
 				swap(index, (index-1)/2);
 				index = (index-1)/2;
-            }else {
-                break;
-            }
-        }
+			}else {
+				break;
+			}
+		}
 	}
 
 	public int size () {

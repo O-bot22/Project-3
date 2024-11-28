@@ -129,6 +129,19 @@ public class ParticleSimulator extends JPanel {
 			System.exit(1);
 		}
 
+		// HeapImpl<Event> myHeap = new HeapImpl<Event>();
+
+		// Event E = new Event(10, 8);
+		// Event E1 = new Event(20, 8);
+		// Event E2 = new Event(30, 8);
+		// myHeap.add(E2);
+		// myHeap.add(E1);
+		// myHeap.add(E);
+
+		// Event myE = myHeap.removeFirst();
+		// System.out.println(E);
+		// System.out.println(myE);
+
 		ParticleSimulator simulator;
 
 		simulator = new ParticleSimulator(args[0]);
